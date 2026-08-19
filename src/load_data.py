@@ -23,3 +23,9 @@ def get_dataset():
         raise FileNotFoundError(f"File not found at the {DATASET_PATH}")
 
     return pd.read_excel(DATASET_PATH)
+
+def prepare_data(df):
+    df = df.copy()
+
+    df = df.drop(columns=["CustomerID", "Count", "Country", "State", "City", "Latitude", "Lat Long", "Longitude", "Churn Score", "Churn Reason", "Churn Label", "CLTV"])
+    
