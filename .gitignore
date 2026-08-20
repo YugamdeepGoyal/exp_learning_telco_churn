@@ -99,3 +99,5 @@ $RECYCLE.BIN/
 *.tmp
 *.bak
 *.orig
+
+tuner_results/

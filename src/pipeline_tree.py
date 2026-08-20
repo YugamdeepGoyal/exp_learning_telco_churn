@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder, StandardScaler
+from sklearn.preprocessing import OrdinalEncoder, StandardScaler
 
 def get_preprocessor():
     cat_cols = ["Gender", "Senior Citizen", "Partner", "Dependents", "Phone Service", "Multiple Lines", "Internet Service", "Online Security", "Online Backup", "Device Protection", "Tech Support", "Streaming TV", "Streaming Movies", "Contract", "Paperless Billing", "Payment Method"]
@@ -12,7 +12,7 @@ def get_preprocessor():
 
 
     encoder = Pipeline([
-        ("encoder", OneHotEncoder(drop="first", handle_unknown="ignore"))
+        ("encoder", OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1))
     ])
 
     preprocessor = ColumnTransformer([
