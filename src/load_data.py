@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from pathlib import Path
+from sklearn.model_selection import train_test_split
 import os
 
 
@@ -24,8 +25,31 @@ def get_dataset():
 
     return pd.read_excel(DATASET_PATH)
 
-def prepare_data(df):
-    df = df.copy()
 
-    df = df.drop(columns=["CustomerID", "Count", "Country", "State", "City", "Latitude", "Lat Long", "Longitude", "Churn Score", "Churn Reason", "Churn Label", "CLTV"])
-    
+def prepare_df(df):
+    df = df.copy()
+    df = df.drop(
+        columns=[
+            "CustomerID",
+            "Count",
+            "Country",
+            "State",
+            "Lat Long",
+            "Latitude",
+            "Longitude",
+            "Zip Code",
+            "City",
+            "Churn Score",
+            "Churn Reason",
+            "Churn Label",
+            "CLTV",
+        ]
+    )
+    df["Total Charges"] = pd.to_numeric(df["Total Charges"], errors="coerce")
+    df["Total Charges"] = df["Total Charges"].fillna(0)
+    X = df.drop(columns=["Churn Value"])
+    y = df["Churn Value"]
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y, shuffle=True
+    )
+    return X_train, X_test, y_train, y_test
