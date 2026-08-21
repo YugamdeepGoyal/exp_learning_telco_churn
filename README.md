@@ -7,6 +7,7 @@ This project is my assignment work on predicting customer churn using the Telco 
 This was built as part of a learning assignment. The dataset (`Telco_customer_churn.xlsx`) was provided by my teacher and is used here only for educational purposes.
 
 ## Project Structure
+```text
 exp_learning_telco_churn/
 │
 ├── dataset/
@@ -33,7 +34,7 @@ exp_learning_telco_churn/
 │
 ├── LICENSE
 └── README.md
-
+```
 
 ## Dataset
 
